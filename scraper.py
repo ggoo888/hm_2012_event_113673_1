@@ -1,10 +1,10 @@
 import scraperwiki
 import re
 
-runner = "5058"
-pagenum = "3"
-event = "113673"
-siteURL = "http://hm12eng.allsports.jp/photo/photo_list_tag_search.php?page_id=113673&tag=" + runner + "&tag_code=zekken&page=" + pagenum
+runner = "186"
+pagenum = "1"
+event = "504286"
+siteURL = "http://eng.allsports.jp/photo/photo_list_tag_search.php?page_id=504286&tag=" + runner + "&tag_code=zekken&page=" + pagenum
 html = scraperwiki.scrape(siteURL)
 print html
 
@@ -16,7 +16,7 @@ for tr in root.cssselect("div[class='photo_box'] tr"):
     data = tds[0].cssselect("img[src]")[0].attrib['src']
     data2 = re.split('=', data)
 
-    url0 = 'http://hm12eng.allsports.jp/photo/photo_'
+    url0 = 'http://eng.allsports.jp/photo/photo_'
     url = url0 + data2[1][:-2] + '_' + data2[2][:-2] + '_' + data2[3][:-2] + '_' + event + '_' + data2[5][:-2] + '_' + data2[4][:-2] + '_t'
     data3 = { 'url' : url }
     scraperwiki.sqlite.save(unique_keys=['url'], data=data3)
